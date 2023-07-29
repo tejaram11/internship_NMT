@@ -18,7 +18,11 @@ def index():
 @app.route('/translate')
 def translate():
     device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-    translator.load_state_dict(torch.load("models/translator_model_epoch14.pt"))
+    if(device=='cuda'):
+        translator.load_state_dict(torch.load("models/translator_model_epoch14.pt"),map_location=torch.device('cpu'))
+    else:
+        translator.load_state_dict(torch.load("models/translator_model_epoch14.pt"))
+        
     translator.to(device)
     translator.eval()
     print("current status: model ready")
