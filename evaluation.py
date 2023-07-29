@@ -38,7 +38,7 @@ translator = Transformer(d_model,
                           PADDING)
 
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-translator.load_state_dict(torch.load("models/translator_model_epoch14.pt"),map_location=torch.device('cpu'))
+translator.load_state_dict(torch.load("models/translator_model_epoch14.pt",map_location=torch.device('cpu')))
 translator.load_state_dict(torch.load("models/translator_model_epoch14.pt"))
 translator.to(device)
 
