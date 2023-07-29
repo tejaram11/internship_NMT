@@ -1,0 +1,4 @@
+Flask==2.3.2
+numpy
+seaborn==0.12.2
+torch==2.0.1

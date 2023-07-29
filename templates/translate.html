@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Translation Page</title>
+  <style>
+        /* Include CSS styles directly within the style tag */
+        {% with css_url = url_for('static', filename='styles.css') %}
+            @import url("{{ css_url }}");
+        {% endwith %}
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#translate-btn").click(function() {
+        var inputText = $("#input-text").val();
+        $.ajax({
+          url: '/process',
+          type: 'POST',
+          data: {text: inputText},
+          success: function(data) {
+            $("#output-text").val(data);
+          }
+        });
+      });
+    });
+    
+    
+  </script>
+</head>
+<body>
+  <h1>Translation Page</h1>
+  <div class="text-input">
+  <input type="text" id="input-text">
+  <label for="input-text">Enter English Sentence:</label>
+  </div>
+  <br><br>
+  <button class="button-57" role="button" type="submit" id="translate-btn" ><span class="text">Translate</span><span>అనువదించు</span></button>
+  <br><br>
+  <div class="text-input">
+  <input type="text" id="output-text" readonly>
+  <label for="output-text">Translated Sentence:</label>
+  </div>
+  <br>
+</body>
+</html>
