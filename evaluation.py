@@ -39,13 +39,15 @@ translator = Transformer(d_model,
 
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 print("currently using device : ",device)
-translator.load_state_dict(torch.load("models/translator_model_epoch14.pt",map_location=torch.device('cpu')))
+translator.load_state_dict(torch.load("models/translator_model_epoch14.pt"))
 translator.to(device)
 
 print("currently using device : ",device)
 
 
 translator.eval()
+
+print(translator)
 def infer_sent(eng_sentence):
     eng_sentence = (eng_sentence,)
     tel_sentence = ("",)
@@ -67,7 +69,8 @@ def infer_sent(eng_sentence):
         if next_token == END:
             break
     print("current translation: ",eng_sentence," \n",tel_sentence[0])
-    print("loss: ")
+    
     return tel_sentence[0]
+
 
 

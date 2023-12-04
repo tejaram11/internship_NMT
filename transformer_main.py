@@ -47,3 +47,4 @@ class Transformer(nn.Module):
         out = self.linear(out)
         return out
     
+print(Transformer)
